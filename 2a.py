@@ -21,7 +21,6 @@ def differences_less_than(l, value):
 	return True
 
 def check_all_levels(l):
-	reportes = 0
 	if(differences_less_than(l,3)):
 		print("Seguro de primeras")
 		return True
@@ -33,6 +32,7 @@ def check_all_levels(l):
 		print(copy)
 		if (differences_less_than(copy,3) == True):
 			return True
+	return False
 
 
 reports = 0
