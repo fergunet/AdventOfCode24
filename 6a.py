@@ -13,7 +13,7 @@ def next_position(i,j,dir,array):
 
 	if(dir == Dir.UP):
 		if(i==0):
-			return Dir.END,"-1","-1"
+			return Dir.END,"-1","-1" #Lo pongo como string por si da error, para que reviente y me avise
 		if(array[i-1][j]=="#"):
 			return Dir.RIGHT,i,j+1
 		else:
@@ -68,8 +68,6 @@ def is_cicle(oni,onj,odir,array):
 	while(True):
 		#print_array(array)
 		set_steps.add(str([dir,ni,nj]))
-		if ni == -1:
-			print ("HAY ERROR")
 		dir,ni,nj = next_position(ni,nj,dir,array)
 		if dir == Dir.END:
 			return False
