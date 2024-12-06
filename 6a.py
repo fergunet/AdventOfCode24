@@ -13,7 +13,7 @@ def next_position(i,j,dir,array):
 
 	if(dir == Dir.UP):
 		if(i==0):
-			return Dir.END,-1,-1
+			return Dir.END,"-1","-1"
 		if(array[i-1][j]=="#"):
 			return Dir.RIGHT,i,j+1
 		else:
@@ -21,7 +21,7 @@ def next_position(i,j,dir,array):
 	
 	if(dir == Dir.DOWN):
 		if(i==(rows-1)):
-			return Dir.END,-1,-1
+			return Dir.END,"-1","-1"
 		if(array[i+1][j]=="#"):
 			return Dir.LEFT,i,j-1
 		else: 
@@ -29,7 +29,7 @@ def next_position(i,j,dir,array):
 	
 	if(dir == Dir.RIGHT):
 		if(j==(columns-1)):
-			return Dir.END,-1,-1
+			return Dir.END,"-1","-1"
 		if(array[i][j+1]=="#"):
 			return Dir.DOWN,i+1,j
 		else:
@@ -37,7 +37,7 @@ def next_position(i,j,dir,array):
 	
 	if(dir == Dir.LEFT):
 		if(j==0):
-			return Dir.END,-1,-1
+			return Dir.END,"-1","-1"
 		if(array[i][j-1]=="#"):
 			return Dir.UP,i-1,j
 		else:
@@ -60,12 +60,6 @@ def print_array(array):
 		print()
 	print()
 
-def count_values(array, value):
-	total = 0
-	for row in array:
-		total = total + row.count(value)
-	return total
-
 def is_cicle(oni,onj,odir,array):
 	ni = oni
 	nj = onj
@@ -74,6 +68,8 @@ def is_cicle(oni,onj,odir,array):
 	while(True):
 		#print_array(array)
 		set_steps.add(str([dir,ni,nj]))
+		if ni == -1:
+			print ("HAY ERROR")
 		dir,ni,nj = next_position(ni,nj,dir,array)
 		if dir == Dir.END:
 			return False
@@ -84,7 +80,7 @@ datafile = open('input6', 'r')
 
 array=[]
 
-for i,row in enumerate(datafile):
+for row in datafile:
 	row = row.strip()
 	l = list(row)
 	array.append(l)
@@ -101,7 +97,7 @@ for i in range(0,len(array)):
 			#print("Placing obstacle in "+str(i)+","+str(j))
 			array[i][j] = '#'
 			#print_array(array)
-			if is_cicle(ni,nj,dir,array):
+			if is_cicle(ni,nj,dir,array)==True:
 				cicles = cicles + 1
 			array[i][j] = "."
 print(cicles)
