@@ -79,7 +79,7 @@ datafile = open('input6', 'r')
 array=[]
 
 for row in datafile:
-	row = row.strip()
+	row = row.replace("\n","")
 	l = list(row)
 	array.append(l)
 
