@@ -6,27 +6,30 @@ def print_array(array):
 	print()
 
 def count_levels(i,j,level,array):
-	print(f"   {i},{j}, {level}")
+	if level == 0 and i == 6 and j == 6:
+		print("TEST") 
+	print(f" "+(level*" ")+f"{level}   {i},{j}, {level}")
 	total = 0
 	
 	if i<0 or i>=len(array) or j<0 or j>=len(array[0]):
 		return 0
-	if array[i][j] != level:
-		return 0
+	
 	if array[i][j] == 9 and level==9:
+		print("FOUND")
 		return 1
+	
 	if array[i][j] != level:
 		return 0	
 	else:
 		print("[[")
-		total = total + count_levels(i-1,j-1,level+1,array)
-		total = total + count_levels(i-1,j,level+1,array)
-		total = total + count_levels(i-1,j+1,level+1,array)
-		total = total + count_levels(i,j-1,level+1,array)
-		total = total + count_levels(i,j+1,level+1,array)
-		total = total + count_levels(i+1,j-1,level+1,array)
-		total = total + count_levels(i+1,j,level+1,array)
-		total = total + count_levels(i+1,j+1,level+1,array)
+		#total = total + count_levels(i-1,j-1,level+1,array)
+		total = total + count_levels(i-1,j,level+1,array)#
+		#total = total + count_levels(i-1,j+1,level+1,array)
+		total = total + count_levels(i,j-1,level+1,array)#
+		total = total + count_levels(i,j+1,level+1,array)#
+		#total = total + count_levels(i+1,j-1,level+1,array)
+		total = total + count_levels(i+1,j,level+1,array)#
+		#total = total + count_levels(i+1,j+1,level+1,array)
 		print("]]")
 	return total
 
